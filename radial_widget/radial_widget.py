@@ -13,18 +13,14 @@ class Wedge:
         self.call = call
 
 class RadialMenu(QWidget):
-    def __init__(self):
+    def __init__(self, wedges, outer_radius=200, inner_radius=100, select_color=0x000000, select_width=10):
         QWidget.__init__(self)
 
-        self.outer_radius = 200
-        self.inner_radius = 100
-        self.select_color = 0xffffff
-        self.select_width = 20
-        self.wedges = [
-                Wedge("Firefox", 0xff720c, "firefox"),
-                Wedge("Steam", 0x7999e5, "steam"),
-                Wedge("Nautilus", 0xffffff, "nautilus")
-                ]
+        self.outer_radius = outer_radius
+        self.inner_radius = inner_radius
+        self.select_color = select_color
+        self.select_width = select_width
+        self.wedges = wedges
         self.selected_wedge = 0
 
         # Needs to extend to the edge of the border around the outer radius
@@ -73,18 +69,12 @@ class RadialMenu(QWidget):
         painter.setPen(Qt.NoPen)
         painter.setRenderHint(QPainter.Antialiasing)
 
-        # Variable to save data about the currently selected wedge
-        selection = {}
         # Draw wedges as pie slices
         painter.setCompositionMode(QPainter.CompositionMode_SourceOver)
         for idx, wedge in enumerate(self.wedges):
             painter.setBrush(QBrush(wedge.color))
             # Extend from a distance from the edge that enables the selection border to be visible
             painter.drawPie(self.select_width, self.select_width, self.outer_radius * 2, self.outer_radius * 2, base_angle + angle * idx, angle)
-            # Save data about selected wedge
-            if idx == self.selected_wedge:
-                selection['idx'] = idx
-                selection['wedge'] = wedge
 
         # Erase center of donut
         painter.setCompositionMode(QPainter.CompositionMode_DestinationOut)
@@ -97,6 +87,6 @@ class RadialMenu(QWidget):
         pen.setWidth(self.select_width)
         pen.setCapStyle(Qt.RoundCap)
         painter.setPen(pen)
-        painter.drawArc(self.select_width, self.select_width, self.outer_radius * 2, self.outer_radius * 2, base_angle + angle * selection['idx'], angle)
+        painter.drawArc(self.select_width, self.select_width, self.outer_radius * 2, self.outer_radius * 2, base_angle + angle * self.selected_wedge, angle)
 
         painter.end()
