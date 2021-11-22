@@ -3,13 +3,13 @@ from subprocess import Popen
 
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget
-from PySide6.QtGui import QPainter, QPen, QBrush
+from PySide6.QtGui import QPainter, QPen, QBrush, QColor
 from PySide6.QtCore import QRect, Qt
 
 class Wedge:
-    def __init__(self, label, color, call):
+    def __init__(self, label, call, r, g, b):
         self.label = label
-        self.color = color
+        self.color = QColor.fromRgb(r, g, b)
         self.call = call
 
 class RadialMenu(QWidget):
