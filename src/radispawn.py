@@ -33,16 +33,25 @@ def getWedges(data):
     wedges = []
     for wedge in data["wedges"]:
         wedges.append(Wedge(wedge["name"], wedge["call"], *wedge["color"]))
+    #wedges = [wedges[0], *reversed(wedges[1:])]
     return wedges
 
-if __name__ == "__main__":
-    parser = ArgumentParser()
-    parser.add_argument("file", help="JSON file to define the menu; relative paths search pwd and then ~/.config/radispawn/")
-    args = parser.parse_args()
+def start(data):
+    wedges = getWedges(data)
 
+    app = QApplication(sys.argv)
+    window = MainWindow(app.primaryScreen().availableGeometry(), wedges)
+    sys.exit(app.exec())
+
+if __name__ == "__main__":
     # Create config folder if it doesn't exist
     if not path.exists(pth := path.expanduser("~/.config/radispawn")):
         mkdir(pth)
+
+    # Parse args with argparse
+    parser = ArgumentParser()
+    parser.add_argument("file", help="JSON file to define the menu; relative paths search pwd and then ~/.config/radispawn/")
+    args = parser.parse_args()
 
     # fa stands for file argument
     fa = args.file
@@ -58,9 +67,4 @@ if __name__ == "__main__":
     with open(json_file, "r") as f:
         data = load(f)
     print(data)
-
-    wedges = getWedges(data)
-
-    app = QApplication(sys.argv)
-    window = MainWindow(app.primaryScreen().availableGeometry(), wedges)
-    sys.exit(app.exec())
+    start(json_data)
