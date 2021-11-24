@@ -4,6 +4,11 @@ setup(
     name='radispawn',
     version='0.0.1',
     description='Launch programs and scripts using a radial menu.',
+    
+    url="https://github.com/aprzn123/RadiSpawn/",
+    author="aprzn",
+    author_email="apr0alt@gmail.com",
+
     packages=["radispawn", "radispawn.radial_widget"],
     package_dir={'' :'src'},
     install_requires=['PySide6'],
