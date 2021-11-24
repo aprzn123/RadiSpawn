@@ -7,7 +7,7 @@ Config files for RadiSpawn can be referenced in three ways:
 ## Config File Format
 The config files are JSON files:
 - Main object
-    - "wedges": list (Lists the wedges in the menu, starting from the top and going counterclockwise)
+    - "wedges": list (Lists the wedges in the menu, starting from the top and going clockwise)
         - Object
             - "name": string (Label on the wedge)
             - "call": string (This is the executable that is run when a wedge is selected)

@@ -33,7 +33,7 @@ def getWedges(data):
     wedges = []
     for wedge in data["wedges"]:
         wedges.append(Wedge(wedge["name"], wedge["call"], *wedge["color"]))
-    #wedges = [wedges[0], *reversed(wedges[1:])]
+    wedges = [wedges[0], *reversed(wedges[1:])]
     return wedges
 
 def start(data):
@@ -43,7 +43,8 @@ def start(data):
     window = MainWindow(app.primaryScreen().availableGeometry(), wedges)
     sys.exit(app.exec())
 
-if __name__ == "__main__":
+
+def main():
     # Create config folder if it doesn't exist
     if not path.exists(pth := path.expanduser("~/.config/radispawn")):
         mkdir(pth)
@@ -68,3 +69,6 @@ if __name__ == "__main__":
         data = load(f)
     print(data)
     start(data)
+
+if __name__ == "__main__":
+    main()
