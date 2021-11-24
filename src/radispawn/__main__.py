@@ -8,7 +8,7 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QVBoxLayout, QLabel
 
-from radial_widget import RadialMenu, Wedge
+from radispawn.radial_widget import RadialMenu, Wedge
 
 class MainWindow(QMainWindow):
     def __init__(self, geom, wedges):
