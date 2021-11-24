@@ -67,4 +67,4 @@ if __name__ == "__main__":
     with open(json_file, "r") as f:
         data = load(f)
     print(data)
-    start(json_data)
+    start(data)
