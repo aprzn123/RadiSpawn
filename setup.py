@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='radispawn',
-    version='0.0.1',
+    version='0.0.3',
     description='Launch programs and scripts using a radial menu.',
     
     url="https://github.com/aprzn123/RadiSpawn/",

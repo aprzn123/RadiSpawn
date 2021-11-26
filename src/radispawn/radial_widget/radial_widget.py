@@ -27,9 +27,10 @@ class RadialMenu(QWidget):
         self.resize((self.outer_radius + self.select_width) * 2, (self.outer_radius + self.select_width) * 2)
         self.setMinimumSize((self.outer_radius + self.select_width) * 2, (self.outer_radius + self.select_width) * 2)
 
-        # Required for keyboard inputs
+        # Required for inputs to work
         self.setEnabled(True)
         self.grabKeyboard()
+        self.setMouseTracking(True)
 
     # Select the next wedge clockwise
     def nextWedge(self):
@@ -56,6 +57,9 @@ class RadialMenu(QWidget):
             sys.exit(0)
         else:
             sys.exit(0)
+
+    def mouseMoveEvent(self, event):
+        print(event.localPos())
 
     def paintEvent(self, event):
         # Angle of each wedge
