@@ -7,6 +7,14 @@ The is on PyPI, so it can be installed by running:
 $ pip install radispawn
 ```
 
+# Running
+```
+radispawn cfg_file.json
+```
+The cfg_file.json argument can be located in either:
+- The present working directory 
+- ~/.config/radispawn/
+
 # Basic config file
 ```json
 {
